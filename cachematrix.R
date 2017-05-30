@@ -1,34 +1,38 @@
-## Put comments here that give an overall description of what your
-## functions do
+## I am going to learning about lexical scoping 
+## to reduce the costly function(inverse a matrix) everty time
 
-## Write a short comment describing this function
+## take matrix as input and contain that for further operation
+## also initialize some methods 
 
 makeCacheMatrix <- function(x = matrix()) {
-        im <- NULL
+        inversematrix <- NULL
         set <- function(y) {
           x <<- y
-          im <<- NULL
+          inversematrix <<- NULL
         }
         get <- function() x
-        setinverse <- function(inverse) im <<- inverse
-        getinverse <- function() im
+        setinverse <- function(im) inversematrix <<- im
+        getinverse <- function() inversematrix
+        
         list(set = set, get = get,
              setinverse = setinverse,
              getinverse = getinverse)
 }
 
 
-## Write a short comment describing this function
+## read the cache data to check is inverse matrix already
+## calculate or not? 
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-        im <- x$getinverse()
-        if(!is.null(im)) {
+        inversematrix <- x$getinverse()
+        if(!is.null(inversematrix)) {
           message("getting cached data")
-          return(im)
+          return(inversematrix)
         }
+  
         data <- x$get()
-        im <- solve(data, ...)
-        x$setinverse(im)
-        im
+        inversematrix <- solve(data, ...)
+        x$setinverse(inversematrix)
+        return(inversematrix)
 }
